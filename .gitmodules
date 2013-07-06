@@ -13,3 +13,6 @@
 [submodule "app/Plugin/DebugKit"]
 	path = app/Plugin/DebugKit
 	url = https://github.com/cakephp/debug_kit.git
+[submodule "app/Plugin/Geocoder"]
+	path = app/Plugin/Geocoder
+	url = https://github.com/martinbean/cakephp-geocoding-plugin.git

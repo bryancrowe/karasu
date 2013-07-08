@@ -1,6 +1,3 @@
-[submodule "app/Plugin/TwitterBootstrap"]
-	path = app/Plugin/TwitterBootstrap
-	url = https://github.com/slywalker/TwitterBootstrap.git
 [submodule "app/Plugin/Utils"]
 	path = app/Plugin/Utils
 	url = https://github.com/CakeDC/utils.git
@@ -16,3 +13,6 @@
 [submodule "app/Plugin/Geocoder"]
 	path = app/Plugin/Geocoder
 	url = https://github.com/martinbean/cakephp-geocoding-plugin.git
+[submodule "app/Plugin/BoostCake"]
+	path = app/Plugin/BoostCake
+	url = https://github.com/slywalker/cakephp-plugin-boost_cake

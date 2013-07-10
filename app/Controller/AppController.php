@@ -33,23 +33,41 @@ App::uses('Controller', 'Controller');
  */
 class AppController extends Controller
 {
+
+    public $theme = 'Bootstrap';
+
     public $components = array(
         'DebugKit.Toolbar',
         'Session',
         'Auth' => array(
             'loginRedirect'  => '/',
             'logoutRedirect' => '/',
-            'authorize'      => array('Controller'),
+            //'authorize'      => array('Controller'),
             'authError'      => 'You need to be logged in to view this page.',
             'authenticate'   => array(
                 'Blowfish'   => array()
+            ),
+            'flash' => array(
+                'element' => 'alert',
+                'key' => 'auth',
+                'params' => array(
+                    'plugin' => 'BoostCake',
+                    'class' => 'alert-error'
+                )
             )
         )
     );
 
+    public $helpers = array(
+        'Session',
+        'Html'      => array('className' => 'BoostCake.BoostCakeHtml'),
+        'Form'      => array('className' => 'BoostCake.BoostCakeForm'),
+        'Paginator' => array('className' => 'BoostCake.BoostCakePaginator'),
+    );
+
 	public function beforeFilter()
 	{
-
+        $this->Auth->allow();
 	}
 
 }

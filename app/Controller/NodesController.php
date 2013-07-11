@@ -1,12 +1,12 @@
 <?php
 App::uses('AppController', 'Controller');
+App::uses('Inflector', 'Utility');
 /**
  * Nodes Controller
  *
  * @property Node $Node
  */
 class NodesController extends AppController {
-
 /**
  * index method
  *
@@ -15,6 +15,8 @@ class NodesController extends AppController {
 	public function index() {
 		$this->Node->recursive = 0;
 		$this->set('nodes', $this->paginate());
+		$types = $this->Node->Type->find('list', array('fields' => 'name'));
+		$this->set(compact('types'));
 	}
 
 /**
@@ -47,8 +49,8 @@ class NodesController extends AppController {
 				$this->Session->setFlash(__('The node could not be saved. Please, try again.'));
 			}
 		}
-		$users = $this->Node->User->find('list');
-		$types = $this->Node->Type->find('list');
+		$users = $this->Node->User->find('list', array('fields' => 'username'));
+		$types = $this->Node->Type->find('list', array('fields' => 'name'));
 		$this->set(compact('users', 'types'));
 	}
 

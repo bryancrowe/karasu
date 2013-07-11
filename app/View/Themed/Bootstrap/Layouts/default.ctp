@@ -17,7 +17,7 @@
  * @license       http://www.opensource.org/licenses/mit-license.php MIT License
  */
 
-$cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework');
+$cakeDescription = __d('cake_dev', 'Karasu');
 ?>
 <!DOCTYPE html>
 <html>
@@ -29,21 +29,20 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 	</title>
 	<?php
 		echo $this->Html->meta('icon');
-
-		//echo $this->Html->css('cake.generic');
+		echo $this->fetch('meta');
 		echo $this->Html->css('bootstrap.min');
 		echo $this->Html->css('bootstrap-responsive.min');
-		echo $this->fetch('meta');
 		echo $this->fetch('css');
+		echo $this->Html->script('bootstrap.min');
 		echo $this->fetch('script');
 	?>
 </head>
 <body>
-	<div id="container">
+	<div class="container-fluid">
 		<div id="header">
 			<h1><?php echo $this->Html->link($cakeDescription, 'http://cakephp.org'); ?></h1>
 		</div>
-		<div id="content">
+		<div class="row-fluid">
 
 			<?php echo $this->Session->flash(); ?>
 

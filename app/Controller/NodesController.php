@@ -16,7 +16,11 @@ class NodesController extends AppController {
  * @return void
  */
 	public function index() {
-		$this->Node->recursive = 2;
+		$this->helpers = array('Text', 'Time');
+		$this->paginate = array(
+        	'limit' => 20,
+        	'contain' => array('User', 'Type', 'Metadatum')
+    	);
 		$this->set('nodes', $this->paginate());
 		$types = $this->Node->Type->find('list', array('fields' => 'name'));
 		$this->set(compact('types'));

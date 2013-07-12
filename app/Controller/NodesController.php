@@ -7,13 +7,16 @@ App::uses('Inflector', 'Utility');
  * @property Node $Node
  */
 class NodesController extends AppController {
+
+	public $components = array('Geocoder.Geocoder');
+
 /**
  * index method
  *
  * @return void
  */
 	public function index() {
-		$this->Node->recursive = 0;
+		$this->Node->recursive = 2;
 		$this->set('nodes', $this->paginate());
 		$types = $this->Node->Type->find('list', array('fields' => 'name'));
 		$this->set(compact('types'));
@@ -42,8 +45,25 @@ class NodesController extends AppController {
 	public function add($type = null) {
 		if ($this->request->is('post')) {
 			$this->Node->create();
-			//debug($this->request->data); die();
-			if ($this->Node->saveAssociated($this->request->data)) {
+			if ($this->Node->save($this->request->data)) {
+				if (isset($this->request->data['Node']['address'])) {
+					$lastNodeID = $this->Node->getLastInsertID();
+					$this->loadModel('Metadatum');
+					$geocodeResult = $this->Geocoder->geocode($this->request->data['Node']['address']);
+					if (count($geocodeResult) > 0) {
+						$latitude  = floatval($geocodeResult[0]->geometry->location->lat);
+						$longitude = floatval($geocodeResult[0]->geometry->location->lng);
+						$metaData = array(
+							'latitude'  => $latitude,
+							'longitude' => $longitude
+						);
+						$metaData = serialize($metaData);
+						$this->Metadatum->save(array(
+							'data'    => $metaData,
+							'node_id' => $lastNodeID
+						));
+					}
+				}
 				$this->Session->setFlash(__('The node has been saved'));
 				$this->redirect(array('action' => 'index'));
 			} else {

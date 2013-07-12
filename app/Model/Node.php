@@ -11,6 +11,8 @@ App::uses('Inflector', 'Utility');
  */
 class Node extends AppModel {
 
+	public $actsAs = array('Containable');
+
 /**
  * Validation rules
  *

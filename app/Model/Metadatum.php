@@ -5,7 +5,8 @@ App::uses('AppModel', 'Model');
  *
  * @property Node $Node
  */
-class Metadatum extends AppModel {
+class Metadatum extends AppModel
+{
 
 /**
  * Validation rules
@@ -62,18 +63,4 @@ class Metadatum extends AppModel {
 		)
 	);
 
-	public function beforeSave($options = array())
-	{
-        if (isset($this->data['Metadatum']['address'])) {
-        	App::uses('GeocoderComponent', 'Geocoder.Controller/Component');
-        	$address = $this->data['Metadatum']['address'];
-        	$geocoder = new GeocoderComponent('Geocoder');
-        	$geocodeResult = $geocoder->geocode($address);
-        	if (count($geocodeResult) > 0) {
-            	$latitude = floatval($geocodeResult[0]->geometry->location->lat);
-            	$longitude = floatval($geocodeResult[0]->geometry->location->lng);
-        	}
-        }
-        return true;
-	}
 }

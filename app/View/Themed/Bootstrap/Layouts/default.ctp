@@ -34,6 +34,7 @@ $cakeDescription = __d('cake_dev', 'Karasu');
 		echo $this->Html->css('bootstrap-responsive.min');
 		echo $this->fetch('css');
 		echo $this->Html->script('bootstrap.min');
+		echo $this->Html->script('https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false');
 		echo $this->fetch('script');
 	?>
 </head>

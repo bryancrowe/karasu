@@ -39,19 +39,26 @@ class NodesController extends AppController {
  *
  * @return void
  */
-	public function add() {
+	public function add($type = null) {
 		if ($this->request->is('post')) {
 			$this->Node->create();
-			if ($this->Node->save($this->request->data)) {
+			//debug($this->request->data); die();
+			if ($this->Node->saveAssociated($this->request->data)) {
 				$this->Session->setFlash(__('The node has been saved'));
 				$this->redirect(array('action' => 'index'));
 			} else {
 				$this->Session->setFlash(__('The node could not be saved. Please, try again.'));
 			}
 		}
-		$users = $this->Node->User->find('list', array('fields' => 'username'));
-		$types = $this->Node->Type->find('list', array('fields' => 'name'));
-		$this->set(compact('users', 'types'));
+		$user_id = $this->Auth->user('id');
+		$type_id = $this->Node->Type->find('first', array(
+			'conditions' => array(
+				'name' => Inflector::camelize($type)
+			),
+			'fields' => array('Type.id')
+		));
+		$this->set(compact('user_id', 'type_id'));
+		$this->render('add_' . $type);
 	}
 
 /**
@@ -66,7 +73,7 @@ class NodesController extends AppController {
 			throw new NotFoundException(__('Invalid node'));
 		}
 		if ($this->request->is('post') || $this->request->is('put')) {
-			if ($this->Node->save($this->request->data)) {
+			if ($this->Node->saveAssociated($this->request->data)) {
 				$this->Session->setFlash(__('The node has been saved'));
 				$this->redirect(array('action' => 'index'));
 			} else {

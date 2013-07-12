@@ -1,5 +1,6 @@
 <?php
 App::uses('AppModel', 'Model');
+App::uses('Inflector', 'Utility');
 /**
  * Node Model
  *
@@ -125,5 +126,14 @@ class Node extends AppModel {
 			'counterQuery' => ''
 		)
 	);
+
+	public function beforeSave($options = array())
+	{
+        if (isset($this->data['Node']['title'])) {
+            $slug = strtolower(Inflector::slug($this->data['Node']['title'], '-'));
+            $this->data['Node']['slug'] = $slug;
+        }
+        return true;
+	}
 
 }

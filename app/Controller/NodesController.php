@@ -19,7 +19,7 @@ class NodesController extends AppController {
 		$this->helpers = array('Text', 'Time');
 		$this->paginate = array(
         	'limit' => 20,
-        	'contain' => array('User', 'Type', 'Metadatum')
+        	'contain' => array('User', 'Type', 'Metadatum', 'Comment')
     	);
 		$this->set('nodes', $this->paginate());
 		$types = $this->Node->Type->find('list', array('fields' => 'name'));

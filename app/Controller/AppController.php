@@ -67,7 +67,13 @@ class AppController extends Controller
 
 	public function beforeFilter()
 	{
-        $this->Auth->allow();
+        $this->Auth->allow('login', 'display');
 	}
+
+    public function isAuthorized($user)
+    {
+        return false;
+    }
+
 
 }

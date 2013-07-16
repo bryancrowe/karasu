@@ -10,6 +10,14 @@ class NodesController extends AppController {
 
 	public $components = array('Geocoder.Geocoder');
 
+	public function isAuthorized($user)
+	{
+		if (in_array($this->action, array('add')) && $user['role'] === 'admin') {
+			return true;
+		}
+		return parent::isAuthorized();
+	}
+
 /**
  * index method
  *

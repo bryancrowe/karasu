@@ -34,6 +34,15 @@ class NodesController extends AppController {
 		$this->set(compact('types'));
 	}
 
+	public function admin_index()
+	{
+		$this->paginate = array(
+        	'limit' => 20,
+        	'contain' => array('User', 'Type')
+    	);
+		$this->set('nodes', $this->paginate());
+	}
+
 /**
  * view method
  *

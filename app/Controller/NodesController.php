@@ -23,11 +23,12 @@ class NodesController extends AppController {
  *
  * @return void
  */
-	public function index() {
+	public function index()
+	{
 		$this->helpers = array('Text', 'Time');
 		$this->paginate = array(
         	'limit' => 20,
-        	'contain' => array('User', 'Type', 'Metadatum', 'Comment')
+        	'contain' => array('User', 'Type', 'Metadatum', 'Comment', 'Image')
     	);
 		$this->set('nodes', $this->paginate());
 		$types = $this->Node->Type->find('list', array('fields' => 'name'));
@@ -63,8 +64,15 @@ class NodesController extends AppController {
  *
  * @return void
  */
-	public function add($type = null) {
-		if ($this->request->is('post')) {
+	public function admin_add($type = null) {
+		if ($this->request->is('post') && $type === 'image') {
+			try {
+				$this->Node->createWithAttachments($this->request->data);
+				$this->Session->setFlash(__('The node has been saved'));
+			} catch (Exception $e) {
+				$this->Session->setFlash($e->getMessage());
+			}
+		} elseif ($this->request->is('post')) {
 			$this->Node->create();
 			if ($this->Node->save($this->request->data)) {
 				if (isset($this->request->data['Node']['address'])) {
@@ -99,7 +107,7 @@ class NodesController extends AppController {
 			'fields' => array('Type.id')
 		));
 		$this->set(compact('user_id', 'type_id'));
-		$this->render('add_' . $type);
+		$this->render('admin_add_' . $type);
 	}
 
 /**

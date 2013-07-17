@@ -6,7 +6,7 @@
 		echo $this->Form->input('title');
 		echo $this->Form->input('body');
 		echo $this->Form->hidden('user_id', array(
-			'value' => '51ddedab-13fc-4ee4-9cd5-543fca2286d8' //$user_id
+			'value' => $user_id
 		));
 		echo $this->Form->hidden('type_id', array(
 			'value' => $type_id['Type']['id']

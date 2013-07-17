@@ -43,14 +43,30 @@ class Attachment extends AppModel {
 			),
 		),
 		'attachment' => array(
-			'notempty' => array(
-				'rule' => array('notempty'),
+			//'notempty' => array(
+			//	'rule' => array('notempty'),
 				//'message' => 'Your custom message here',
 				//'allowEmpty' => false,
 				//'required' => false,
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-			),
+			//),
 		),
 	);
+
+	public $actsAs = array(
+        'Upload.Upload' => array(
+            'attachment' => array(
+            	'path' => '{ROOT}webroot{DS}files{DS}{model}{DS}{field}{DS}'
+            ),
+        ),
+    );
+
+    public $belongsTo = array(
+        'Node' => array(
+            'className' => 'Node',
+            'foreignKey' => 'foreign_key',
+        ),
+    );
+
 }

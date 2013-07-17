@@ -1,3 +1,5 @@
+<?php echo $this->element('Admin/toolbar'); ?>
+
 <div class="nodes form">
 <?php echo $this->Form->create('Node'); ?>
 	<fieldset>

@@ -1,3 +1,5 @@
+<?php echo $this->element('Admin/toolbar'); ?>
+
 <table class="table">
 	<tr>
 		<th>Title</th>

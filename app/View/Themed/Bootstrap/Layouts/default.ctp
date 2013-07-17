@@ -32,14 +32,20 @@ $cakeDescription = __d('cake_dev', 'Karasu');
 		echo $this->fetch('meta');
 		echo $this->Html->css('bootstrap.min');
 		echo $this->Html->css('bootstrap-responsive.min');
+		echo $this->Html->css('custom');
 		echo $this->fetch('css');
+		echo $this->Html->script('//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js');
 		echo $this->Html->script('bootstrap.min');
 		echo $this->Html->script('https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false');
 		echo $this->fetch('script');
 	?>
 </head>
 <body>
-	<div class="container-fluid">
+	<?php if (isset($this->request->params['prefix']) && $this->request->params['prefix'] === 'admin'): ?>
+		<div class="container-fluid admin">
+	<?php else: ?>
+		<div class="container-fluid">
+	<?php endif; ?>
 		<div id="header">
 			<h1><?php echo $this->Html->link($cakeDescription, 'http://cakephp.org'); ?></h1>
 		</div>

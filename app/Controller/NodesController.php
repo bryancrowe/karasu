@@ -41,7 +41,11 @@ class NodesController extends AppController {
         	'limit' => 20,
         	'contain' => array('User', 'Type')
     	);
+    	$types = $this->Node->Type->find('list', array(
+    		'fields' => array('Type.name')
+    	));
 		$this->set('nodes', $this->paginate());
+		$this->set(compact('types'));
 	}
 
 /**

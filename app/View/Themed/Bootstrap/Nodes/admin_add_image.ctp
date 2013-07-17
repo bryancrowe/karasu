@@ -1,3 +1,5 @@
+<?php echo $this->element('Admin/toolbar'); ?>
+
 <?php
 	echo $this->Form->create('Node', array('type' => 'file'));
 	echo $this->Form->input('title');

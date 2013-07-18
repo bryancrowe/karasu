@@ -84,7 +84,7 @@ class CommentsController extends AppController {
  * @param string $id
  * @return void
  */
-	public function delete($id = null) {
+	public function admin_delete($id = null) {
 		$this->Comment->id = $id;
 		if (!$this->Comment->exists()) {
 			throw new NotFoundException(__('Invalid comment'));

@@ -121,7 +121,7 @@ class NodesController extends AppController {
  * @param string $id
  * @return void
  */
-	public function edit($id = null) {
+	public function admin_edit($id = null) {
 		if (!$this->Node->exists($id)) {
 			throw new NotFoundException(__('Invalid node'));
 		}
@@ -148,7 +148,7 @@ class NodesController extends AppController {
  * @param string $id
  * @return void
  */
-	public function delete($id = null) {
+	public function admin_delete($id = null) {
 		$this->Node->id = $id;
 		if (!$this->Node->exists()) {
 			throw new NotFoundException(__('Invalid node'));

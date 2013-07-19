@@ -2,6 +2,18 @@
 	<h2><?php echo __('Nodes'); ?></h2>
 	<?php foreach ($nodes as $node): ?>
 		<?php echo $this->element('Nodes' . DS . Inflector::camelize($node['Type']['name']) . DS . 'excerpt', array('node' => $node)); ?>
+		<?php 
+			echo $this->Form->create('Comment', array('url' => array('controller' => 'comments', 'action' => 'add')));
+			echo $this->Form->input('name');
+			echo $this->Form->input('email');
+			echo $this->Form->input('website');
+			echo $this->Form->input('body');
+			echo $this->Form->hidden('node_id', array(
+				'value' => $node['Node']['id']
+			));
+			echo $this->Form->end();
+		?>
+
 	<?php endforeach; ?>
 	<p>
 	<?php

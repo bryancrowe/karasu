@@ -36,6 +36,7 @@ $cakeDescription = __d('cake_dev', 'Karasu');
 		echo $this->fetch('css');
 		echo $this->Html->script('//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js');
 		echo $this->Html->script('bootstrap.min');
+		echo $this->Html->script('app');
 		echo $this->Html->script('https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false');
 		echo $this->fetch('script');
 	?>

@@ -2,8 +2,14 @@
 	<h2><?php echo __('Nodes'); ?></h2>
 	<?php foreach ($nodes as $node): ?>
 		<?php echo $this->element('Nodes' . DS . Inflector::camelize($node['Type']['name']) . DS . 'excerpt', array('node' => $node)); ?>
+		<div id="<?php echo $node['Node']['id']; ?>" class="collapsed-comment-form">
 		<?php 
-			echo $this->Form->create('Comment', array('url' => array('controller' => 'comments', 'action' => 'add')));
+			echo $this->Form->create('Comment', array(
+				'url' => array(
+					'controller' => 'comments',
+					'action' => 'add'
+				),
+			));
 			echo $this->Form->input('name');
 			echo $this->Form->input('email');
 			echo $this->Form->input('website');
@@ -11,9 +17,10 @@
 			echo $this->Form->hidden('node_id', array(
 				'value' => $node['Node']['id']
 			));
-			echo $this->Form->end();
+			echo $this->Form->end('Submit');
 		?>
-
+		</div>
+		<button class="add-comment" data-toggle="<?php echo $node['Node']['id']; ?>"><i class="icon-plus-sign"></i> Add Comment</button>
 	<?php endforeach; ?>
 	<p>
 	<?php

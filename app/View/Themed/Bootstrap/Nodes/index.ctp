@@ -4,6 +4,7 @@
 		<?php echo $this->element('Nodes' . DS . Inflector::camelize($node['Type']['name']) . DS . 'excerpt', array('node' => $node)); ?>
 		<div id="<?php echo $node['Node']['id']; ?>" class="collapsed-comment-form">
 		<?php 
+			$commentCount = count($node['Comment']);
 			echo $this->Form->create('Comment', array(
 				'url' => array(
 					'controller' => 'comments',
@@ -20,7 +21,8 @@
 			echo $this->Form->end('Submit');
 		?>
 		</div>
-		<button class="add-comment" data-toggle="<?php echo $node['Node']['id']; ?>"><i class="icon-plus-sign"></i> Add Comment</button>
+		<span class="info"><?php echo $commentCount; ?> Comment(s)</span>
+		<button class="btn add-comment" data-toggle="<?php echo $node['Node']['id']; ?>"><i class="icon-plus-sign"></i> Add Comment</button>
 	<?php endforeach; ?>
 	<p>
 	<?php

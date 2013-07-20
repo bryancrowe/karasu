@@ -1,5 +1,5 @@
 <div class="row-fluid">
-    <div class="span4">
+    <div class="span4 offset4">
         <?php echo $this->Session->flash('auth'); ?>
         <?php echo $this->Form->create('User'); ?>
         <fieldset>

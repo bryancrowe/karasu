@@ -21,8 +21,17 @@
 			echo $this->Form->end('Submit');
 		?>
 		</div>
-		<span class="info"><?php echo $commentCount; ?> Comment(s)</span>
-		<button class="btn add-comment" data-toggle="<?php echo $node['Node']['id']; ?>"><i class="icon-plus-sign"></i> Add Comment</button>
+		<?php
+			if ($commentCount === 0) {
+				$commentWord = 'Comments';
+			} elseif ($commentCount === 1) {
+				$commentWord = 'Comment';
+			} else {
+				$commentWord = 'Comments';
+			}
+		?>
+		<span class="label label-info"><?php echo $commentCount . ' ' . $commentWord; ?></span>
+		<button class="btn btn-mini add-comment" data-toggle="<?php echo $node['Node']['id']; ?>"><i class="icon-plus-sign"></i> Add Comment</button>
 	<?php endforeach; ?>
 	<p>
 	<?php

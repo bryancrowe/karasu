@@ -12,25 +12,11 @@ class CommentsController extends AppController {
  *
  * @return void
  */
-	public function index() {
+	public function admin_index() {
 		$this->Comment->recursive = 0;
 		$this->set('comments', $this->paginate());
 	}
 
-/**
- * view method
- *
- * @throws NotFoundException
- * @param string $id
- * @return void
- */
-	public function view($id = null) {
-		if (!$this->Comment->exists($id)) {
-			throw new NotFoundException(__('Invalid comment'));
-		}
-		$options = array('conditions' => array('Comment.' . $this->Comment->primaryKey => $id));
-		$this->set('comment', $this->Comment->find('first', $options));
-	}
 
 /**
  * add method

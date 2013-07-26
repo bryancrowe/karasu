@@ -87,4 +87,12 @@ class User extends AppModel {
         return true;
     }
 
+    public function checkMatchedPasswords()
+    {
+        if (!isset($this->data['User']['password_confirm'])) {
+        	return true;
+        }
+        return ($this->data['User']['password'] === $this->data['User']['password_confirm']);
+    }
+
 }

@@ -17,14 +17,14 @@
  * @license       http://www.opensource.org/licenses/mit-license.php MIT License
  */
 
-$cakeDescription = __d('cake_dev', 'Karasu');
+$karasuDescription = __d('karasu_dev', 'Karasu');
 ?>
 <!DOCTYPE html>
 <html>
 <head>
 	<?php echo $this->Html->charset(); ?>
 	<title>
-		<?php echo $cakeDescription ?>:
+		<?php echo $karasuDescription ?>:
 		<?php echo $title_for_layout; ?>
 	</title>
 	<?php
@@ -48,7 +48,7 @@ $cakeDescription = __d('cake_dev', 'Karasu');
 		<div class="container-fluid">
 	<?php endif; ?>
 		<div id="header">
-			<h1><?php echo $this->Html->link($cakeDescription, 'http://cakephp.org'); ?></h1>
+			<h1><?php echo $this->Html->link($karasuDescription, '/'); ?></h1>
 		</div>
 		<div class="row-fluid">
 
@@ -56,14 +56,11 @@ $cakeDescription = __d('cake_dev', 'Karasu');
 
 			<?php echo $this->fetch('content'); ?>
 		</div>
-		<div id="footer">
-			<?php echo $this->Html->link(
-					$this->Html->image('cake.power.gif', array('alt' => $cakeDescription, 'border' => '0')),
-					'http://www.cakephp.org/',
-					array('target' => '_blank', 'escape' => false)
-				);
-			?>
-		</div>
+		<footer class="footer>
+			<div class="row-fluid">
+			
+			</div>
+		</footer>
 	</div>
 	<?php echo $this->element('sql_dump'); ?>
 </body>

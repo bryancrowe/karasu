@@ -4,9 +4,6 @@
 [submodule "app/Plugin/Upload"]
 	path = app/Plugin/Upload
 	url = https://github.com/josegonzalez/upload.git
-[submodule "app/Plugin/TinyMCE"]
-	path = app/Plugin/TinyMCE
-	url = git://github.com/CakeDC/TinyMCE.git
 [submodule "app/Plugin/DebugKit"]
 	path = app/Plugin/DebugKit
 	url = https://github.com/cakephp/debug_kit.git
